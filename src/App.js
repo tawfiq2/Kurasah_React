@@ -72,8 +72,8 @@ class App extends React.Component {
     this.setState({ account: accounts[0] });
     console.log("Account: " + this.state.account);
 
-    const netId = await web3.eth.net.getId();
-    const deployedNetwork = contract.networks[netId];
+    // const netId = await web3.eth.net.getId();
+    const deployedNetwork = contract.networks[4];
 
     console.log(deployedNetwork.address);
 
@@ -102,8 +102,8 @@ class App extends React.Component {
     this.setState({ account: accounts[0] });
     console.log("Account: " + this.state.account);
 
-    const netId = await web3.eth.net.getId();
-    const deployedNetwork = contract.networks[netId];
+    //const netId = await web3.eth.net.getId();
+    const deployedNetwork = contract.networks[ne4tId];
 
     console.log(deployedNetwork.address);
 
@@ -134,8 +134,8 @@ class App extends React.Component {
     this.setState({ account: accounts[0] });
     console.log("Account: " + this.state.account);
 
-    const netId = await web3.eth.net.getId();
-    const deployedNetwork = contract.networks[netId];
+    //const netId = await web3.eth.net.getId();
+    const deployedNetwork = contract.networks[4];
 
     console.log(deployedNetwork.address);
 
@@ -165,8 +165,8 @@ class App extends React.Component {
     this.setState({ account: accounts[0] });
     console.log("Account: " + this.state.account);
 
-    const netId = await web3.eth.net.getId();
-    const deployedNetwork = contract.networks[netId];
+    //const netId = await web3.eth.net.getId();
+    const deployedNetwork = contract.networks[4];
 
     console.log(deployedNetwork.address);
 
@@ -194,8 +194,8 @@ class App extends React.Component {
     this.setState({ account: accounts[0] });
     console.log("Account: " + this.state.account);
 
-    const netId = await web3.eth.net.getId();
-    const deployedNetwork = contract.networks[netId];
+    //const netId = await web3.eth.net.getId();
+    const deployedNetwork = contract.networks[4];
 
     console.log(deployedNetwork.address);
 
@@ -234,8 +234,8 @@ class App extends React.Component {
     this.setState({ account: accounts[0] });
     console.log("Account: " + this.state.account);
 
-    const netId = await web3.eth.net.getId();
-    const deployedNetwork = contract.networks[netId];
+    //const netId = await web3.eth.net.getId();
+    const deployedNetwork = contract.networks[4];
 
     console.log(deployedNetwork.address);
 
