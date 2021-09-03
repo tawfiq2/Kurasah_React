@@ -52,6 +52,7 @@ class App extends React.Component {
       withdraw: "",
       user: "",
       status: "",
+      countBids: ""
     };
   }
 
@@ -177,9 +178,11 @@ class App extends React.Component {
       deployedNetwork.address
     );
 
-    await kurContract.methods
+   const nobids = await kurContract.methods
       .numberOfBids(this.state.numberBids)
-      .send({ from: this.state.account });
+      .call({ from: this.state.account });
+
+    this.setState({countBids: nobids[0]});
 
     this.setState({status: "(please wait)"})
   }
@@ -370,6 +373,8 @@ class App extends React.Component {
                       >
                         Number of Bids
                       </Button>
+
+                      <div>No of Bids: {this.state.countBids}</div>
 
                     <div className="top-line" style={{ marginTop: "25px" }}>{"Info"}</div>
                       <input
