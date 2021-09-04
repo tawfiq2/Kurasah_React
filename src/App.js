@@ -13,7 +13,7 @@ class App extends React.Component {
     await this.loadWeb3();
   }
 
-  
+
 
   async loadWeb3() {
     if (window.ethereum) {
@@ -64,7 +64,7 @@ class App extends React.Component {
 
   async createTender() {
     console.log("createTender", this.state.name);
-    this.setState({status: "(please wait)"})
+    this.setState({ status: "(please wait)" })
 
     const web3 = window.web3;
 
@@ -89,12 +89,12 @@ class App extends React.Component {
       .createTender(this.state.name)
       .send({ from: this.state.account });
 
-    this.setState({status: "Tender has been create... (please wait)"})
+    this.setState({ status: "Tender has been create... (please wait)" })
   }
 
   async closeBid() {
     console.log("closeBid", this.state.close);
-    this.setState({status: ""});
+    this.setState({ status: "" });
 
     const web3 = window.web3;
 
@@ -119,14 +119,14 @@ class App extends React.Component {
       .closeBid(this.state.close)
       .send({ from: this.state.account });
 
-    this.setState({status: "Tender has been close... (please wait)"})
+    this.setState({ status: "Tender has been close... (please wait)" })
   }
 
   async bid() {
     console.log("bidding", this.state.bidding);
     console.log("price", this.state.price);
     console.log("Adress", this.state.address);
-    this.setState({status: ""})
+    this.setState({ status: "" })
 
     const web3 = window.web3;
 
@@ -151,13 +151,13 @@ class App extends React.Component {
       .bid(this.state.bidding, this.state.address)
       .send({ from: this.state.account, value: this.state.price });
 
-    this.setState({status: "Bid has been submit... (please wait)"})
+    this.setState({ status: "Bid has been submit... (please wait)" })
   }
 
 
   async numberOfBids() {
     console.log("numberOfBids", this.state.numberBids);
-    this.setState({status: ""})
+    this.setState({ status: "" })
 
     const web3 = window.web3;
 
@@ -178,13 +178,13 @@ class App extends React.Component {
       deployedNetwork.address
     );
 
-   const nobids = await kurContract.methods
+    const nobids = await kurContract.methods
       .numberOfBids(this.state.numberBids)
       .call({ from: this.state.account });
 
-    this.setState({countBids: nobids[0]});
+    this.setState({ countBids: nobids[0] });
 
-    this.setState({status: "(please wait)"})
+    this.setState({ status: "(please wait)" })
   }
 
 
@@ -209,13 +209,15 @@ class App extends React.Component {
       deployedNetwork.address
     );
 
-   const dataInfo = await kurContract.methods
+    const dataInfo = await kurContract.methods
       .info(this.state.info)
       .call({ from: this.state.account });
 
-    this.setState({status: "(please wait)"})
-    this.setState({infoAllDAta: "Name : " + dataInfo[0]+ "\n" + "Open : " + dataInfo[1] + "\n" + "Bids : " + 
-    dataInfo[2]  + "\n" + "LowestBid : " + dataInfo[3]+ "\n"+ "Winner : " + dataInfo[4] + "\n" + "Win ID : " + dataInfo[5]})
+    this.setState({ status: "(please wait)" })
+    this.setState({
+      infoAllDAta: "Name : " + dataInfo[0] + "\n" + "Open : " + dataInfo[1] + "\n" + "Bids : " +
+        dataInfo[2] + "\n" + "LowestBid : " + dataInfo[3] + "\n" + "Winner : " + dataInfo[4] + "\n" + "Win ID : " + dataInfo[5]
+    })
     console.log(dataInfo[0]);
     console.log(dataInfo[1]);
     console.log(dataInfo[2]);
@@ -228,8 +230,8 @@ class App extends React.Component {
   async funWithdraw() {
     console.log("withdraw", this.state.withdraw);
     console.log("user", this.state.user);
-    this.setState({status: ""})
-    
+    this.setState({ status: "" })
+
     const web3 = window.web3;
 
     const webeProvider = new Web3(
@@ -254,7 +256,7 @@ class App extends React.Component {
       .withdraw(this.state.withdraw, this.state.user)
       .send({ from: this.state.account });
 
-    this.setState({status: "withdraw has been submit... (please wait)"})
+    this.setState({ status: "withdraw has been submit... (please wait)" })
   }
 
 
@@ -275,156 +277,158 @@ class App extends React.Component {
               <div className="col">
                 <div className="home__hero-text-wrapper">
                   <div className="top-line">{" DAPP"}</div>
-                  
+
                   <h1 className={true ? "heading" : "heading dark"}>
                     {"KURASAH"}
                   </h1>
                   <div className="status-line">Status: {this.state.status}</div>
                   <div className="input-areas">
 
-                      <div className="top-line">{"Create Tender"}</div>
-                      <input
-                        className="footer-input"
-                        name="name"
-                        type="text"
-                        placeholder="Create Tender"
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                      />
+                    <div className="top-line">{"Create Tender"}</div>
+                    <input
+                      className="footer-input"
+                      name="name"
+                      type="text"
+                      placeholder="Create Tender"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                    />
 
-                      <Button
-                        buttonSize="btn--medium"
-                        buttonColor="blue"
-                        onClick={this.createTender}
-                      >
-                        Create Tender
-                      </Button>
-   
+                    <Button
+                      buttonSize="btn--medium"
+                      buttonColor="blue"
+                      onClick={this.createTender}
+                    >
+                      Create Tender
+                    </Button>
+
 
                     <div className="top-line" style={{ marginTop: "25px" }}>{"Close Bid"}</div>
-                      <input
-                        className="footer-input"
-                        name="close"
-                        type="text"
-                        placeholder="أسم المشروع"
-                        value={this.state.close}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="close"
+                      type="text"
+                      placeholder="أسم المشروع"
+                      value={this.state.close}
+                      onChange={this.handleChange}
+                    />
 
-                      <Button
-                        buttonSize="btn--medium"
-                        buttonColor="blue"
-                        onClick={this.closeBid}
-                      >
-                        Close Bid
-                      </Button>
-                    
-                    
+                    <Button
+                      buttonSize="btn--medium"
+                      buttonColor="blue"
+                      onClick={this.closeBid}
+                    >
+                      Close Bid
+                    </Button>
+
+
                     <div className="top-line" style={{ marginTop: "25px" }}>{"Bid"}</div>
-                      <input
-                        className="footer-input"
-                        name="bidding"
-                        type="text"
-                        placeholder="أسم المشروع"
-                        value={this.state.bidding}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="bidding"
+                      type="text"
+                      placeholder="أسم المشروع"
+                      value={this.state.bidding}
+                      onChange={this.handleChange}
+                    />
 
-                       <input
-                        className="footer-input"
-                        name="price"
-                        type="text"
-                        placeholder="Amount"
-                        value={this.state.price}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="price"
+                      type="text"
+                      placeholder="Amount"
+                      value={this.state.price}
+                      onChange={this.handleChange}
+                    />
 
-                       <input
-                        className="footer-input"
-                        name="address"
-                        type="text"
-                       placeholder="Address"
-                        value={this.state.address}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="address"
+                      type="text"
+                      placeholder="Address"
+                      value={this.state.address}
+                      onChange={this.handleChange}
+                    />
 
-                      <Button
-                        buttonSize="btn--medium"
-                        buttonColor="blue"
-                        onClick={this.bid}
-                      >
-                        Bid
-                      </Button>
+                    <Button
+                      buttonSize="btn--medium"
+                      buttonColor="blue"
+                      onClick={this.bid}
+                    >
+                      Bid
+                    </Button>
 
                     <div className="top-line" style={{ marginTop: "25px" }}>{"Number of Bids"}</div>
-                      <input
-                        className="footer-input"
-                        name="numberBids"
-                        type="text"
-                        placeholder="أسم المشروع"
-                        value={this.state.numberBids}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="numberBids"
+                      type="text"
+                      placeholder="أسم المشروع"
+                      value={this.state.numberBids}
+                      onChange={this.handleChange}
+                    />
 
-                      <Button
-                        buttonSize="btn--medium"
-                        buttonColor="blue"
-                        onClick={this.numberOfBids}
-                      >
-                        Number of Bids
-                      </Button>
+                    <Button
+                      buttonSize="btn--medium"
+                      buttonColor="blue"
+                      onClick={this.numberOfBids}
+                    >
+                      Number of Bids
+                    </Button>
 
-                      <div>No of Bids: {this.state.countBids}</div>
+                    <div>No of Bids: {this.state.countBids}</div>
 
                     <div className="top-line" style={{ marginTop: "25px" }}>{"Info"}</div>
-                      <input
-                        className="footer-input"
-                        name="info"
-                        type="text"
-                        placeholder="أسم المشروع"
-                        value={this.state.info}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="info"
+                      type="text"
+                      placeholder="أسم المشروع"
+                      value={this.state.info}
+                      onChange={this.handleChange}
+                    />
 
-                      <Button
-                        buttonSize="btn--medium"
-                        buttonColor="blue"
-                        onClick={this.infoData}
-                      >
-                        Info  
-                      </Button>
+                    <Button
+                      buttonSize="btn--medium"
+                      buttonColor="blue"
+                      onClick={this.infoData}
+                    >
+                      Info
+                    </Button>
+
+                    <div>
+                      {this.state.infoAllDAta}
+                    </div>
 
                     <div className="top-line" style={{ marginTop: "25px" }}>{"Withdraw"}</div>
-                      <input
-                        className="footer-input"
-                        name="withdraw"
-                        type="text"
-                        placeholder="أسم المشروع"
-                        value={this.state.withdraw}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="withdraw"
+                      type="text"
+                      placeholder="أسم المشروع"
+                      value={this.state.withdraw}
+                      onChange={this.handleChange}
+                    />
 
-                       <input
-                        className="footer-input"
-                        name="user"
-                        type="text"
-                        placeholder="عنوان المحفظة"
-                        value={this.state.user}
-                        onChange={this.handleChange}
-                      />
+                    <input
+                      className="footer-input"
+                      name="user"
+                      type="text"
+                      placeholder="عنوان المحفظة"
+                      value={this.state.user}
+                      onChange={this.handleChange}
+                    />
 
-                      <Button
-                        buttonSize="btn--medium"
-                        buttonColor="blue"
-                        onClick={this.funWithdraw}
-                      >
-                        Withdraw
-                      </Button>
+                    <Button
+                      buttonSize="btn--medium"
+                      buttonColor="blue"
+                      onClick={this.funWithdraw}
+                    >
+                      Withdraw
+                    </Button>
 
                   </div>
-                  <div style={{marginTop: "20px"}}>
-                    {this.state.infoAllDAta}
-                  </div>
+
 
                 </div>
               </div>
